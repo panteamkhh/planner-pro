@@ -257,6 +257,6 @@ Licensed under the **[MIT License](LICENSE)** © 2026 Yasiplann — free to use,
 
 ### ⭐ If this planner helps you, please give it a star!
 
-**Made with ❤️ for better planning — By Yasiplann**
+**Made with ❤️ for better planning — By Pantea**
 
 </div>
