@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>پلنر تخصصی — By Yasiplann</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-theme="coffee">
+  <div class="app">
+    <header class="hero">
+      <div class="hero-actions">
+        <button class="hero-btn" id="modeToggle" title="حالت روشن/تاریک"></button>
+        <button class="hero-btn" id="langToggle" title="Change language">EN</button>
+      </div>
+      <div class="brand">BY YASIPLANN</div>
+      <h1>پلنر تخصصی</h1>
+      <div class="tag">نسخه آفلاین — همه‌چیز را امتحان کن</div>
+      <div class="search-wrap">
+        <input class="search" id="searchInput" placeholder="جستجو..." autocomplete="off" />
+        <span class="search-ico" id="searchIco"></span>
+        <div id="searchResults"></div>
+      </div>
+    </header>
+
+    <nav class="nav" id="nav"></nav>
+    <main id="view"></main>
+    <footer class="empty" id="footerNote"></footer>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="modal" id="modal"></div>
+  </div>
+
+  <script>
+    (function () {
+      function store() {
+        try { return window.localStorage; }
+        catch (e) { var m = {}; return { getItem: function (k) { return k in m ? m[k] : null; }, setItem: function (k, v) { m[k] = String(v); }, removeItem: function (k) { delete m[k]; } }; }
+      }
+      var LS = store();
+      var lang = 'fa';
+      try { lang = LS.getItem('planner.lang') || 'fa'; } catch (e) {}
+      window.__lang = lang;
+      var en = lang === 'en';
+      document.documentElement.lang = lang;
+      document.documentElement.dir = en ? 'ltr' : 'rtl';
+      document.body.className = en ? 'lang-en' : 'lang-fa';
+      var h1 = document.querySelector('.hero h1');
+      if (h1) { h1.textContent = en ? 'Professional Planner' : 'پلنر تخصصی'; }
+      var tag = document.querySelector('.hero .tag');
+      if (tag) { tag.textContent = en ? 'Offline version — try everything' : 'نسخه آفلاین — همه‌چیز را امتحان کن'; }
+      var search = document.getElementById('searchInput');
+      if (search) { search.placeholder = en ? 'Search...' : 'جستجو...'; }
+
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+      function convKey(k, toG) {
+        if (!k || typeof k !== 'string') { return k; }
+        var p = k.split('/'); if (p.length < 3) { return k; }
+        var y = +p[0], m = +p[1], d = +p[2]; if (!y || !m || !d) { return k; }
+        try {
+          if (toG) { var g = window.__Jalali.toGregorian(y, m, d); return g.gy + '/' + pad(g.gm) + '/' + pad(g.gd); }
+          var j = window.__Jalali.toJalaali(y, m, d); return j.jy + '/' + pad(j.jm) + '/' + pad(j.jd);
+        } catch (e) { return k; }
+      }
+      function convMonth(k, toG) { var p = (k || '').split('/'); if (p.length < 2) { return k; } return convKey(p[0] + '/' + p[1] + '/15', toG).split('/').slice(0, 2).join('/'); }
+      function convertState(s, toG) {
+        if (!s) { return s; }
+        (s.tasks || []).forEach(function (t) { t.weekKey = convKey(t.weekKey, toG); t.createdAt = convKey(t.createdAt, toG); var dd = {}; Object.keys(t.done || {}).forEach(function (k) { dd[convKey(k, toG)] = true; }); t.done = dd; });
+        var nd = {}; Object.keys(s.days || {}).forEach(function (k) { nd[convKey(k, toG)] = s.days[k]; }); s.days = nd;
+        var nw = {}; Object.keys(s.weeks || {}).forEach(function (k) { nw[convKey(k, toG)] = s.weeks[k]; }); s.weeks = nw;
+        var nm = {}; Object.keys(s.months || {}).forEach(function (k) { nm[convMonth(k, toG)] = s.months[k]; }); s.months = nm;
+        var nx = {}; Object.keys(s.xpLog || {}).forEach(function (k) { nx[convKey(k, toG)] = s.xpLog[k]; }); s.xpLog = nx;
+        (s.habits || []).forEach(function (h) { var nh = {}; Object.keys(h.history || {}).forEach(function (k) { nh[convKey(k, toG)] = true; }); h.history = nh; });
+        (s.goals || []).forEach(function (g) { g.deadline = convKey(g.deadline, toG); });
+        (s.reminders || []).forEach(function (r) { r.date = convKey(r.date, toG); });
+        (s.notes || []).forEach(function (n) { n.date = convKey(n.date, toG); });
+        var mo = s.money || {};
+        (mo.transactions || []).forEach(function (t) { t.date = convKey(t.date, toG); });
+        (mo.budgets || []).forEach(function (b) { b.month = convMonth(b.month, toG); });
+        (mo.debts || []).forEach(function (d) { d.due = convKey(d.due, toG); });
+        return s;
+      }
+      function migrate(toG) {
+        try { var raw = LS.getItem('yasiplann.planner.v1'); if (raw) { var st = JSON.parse(raw); convertState(st, toG); LS.setItem('yasiplann.planner.v1', JSON.stringify(st)); } } catch (e) {}
+      }
+
+      var lt = document.getElementById('langToggle');
+      if (lt) {
+        lt.textContent = en ? 'FA' : 'EN';
+        lt.addEventListener('click', function () {
+          if (window.__Jalali) { migrate(!en); }
+          try { LS.setItem('planner.lang', en ? 'fa' : 'en'); } catch (e) {}
+          location.reload();
+        });
+      }
+
+      function load(src, cb) { var s = document.createElement('script'); s.src = src; s.async = false; if (cb) { s.onload = cb; } document.body.appendChild(s); }
+      function boot() {
+        load('js/jalali.js', function () {
+          window.__Jalali = window.Jalali;
+          if (en) {
+            load('js/gregorian.js', function () { load('js/app.en.js'); });
+          } else {
+            load('js/app.js');
+          }
+        });
+      }
+      if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', boot); } else { boot(); }
+    })();
+  </script>
+</body>
+</html>
