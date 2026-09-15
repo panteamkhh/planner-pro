@@ -1,0 +1,150 @@
+/* ===== پلنر تخصصی — استایل اصلی ===== */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f3ece1;
+  --bg2: #efe6d8;
+  --card: #fffdf8;
+  --card2: #faf5ec;
+  --text: #4a3a30;
+  --muted: #a2937f;
+  --border: #e9dfd0;
+  --accent: #7c4b39;
+  --accent2: #9a6b52;
+  --accent-soft: #f0e2d7;
+  --on-accent: #fff8f2;
+  --good: #5f8d5a;
+  --warn: #c98a3f;
+  --bad: #b4553f;
+  --c-blue: #5b8bb5;
+  --c-teal: #4f9a8a;
+  --c-amber: #c99a4a;
+  --c-purple: #8a6bb0;
+  --c-green: #5f9e63;
+  --c-red: #b4553f;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 8px 24px rgba(90, 64, 45, .08);
+  --shadow-sm: 0 3px 10px rgba(90, 64, 45, .06);
+}
+
+body[data-theme="matcha"] {
+  --bg: #eef2e6; --bg2: #e6ecdb; --card: #fbfdf7; --card2: #f2f6ea;
+  --text: #3c4a37; --muted: #94a189; --border: #dde6cf;
+  --accent: #5c7a4e; --accent2: #78956a; --accent-soft: #e3edd8; --on-accent: #fbfdf7;
+}
+body[data-theme="rose"] {
+  --bg: #f7ecec; --bg2: #f1e2e2; --card: #fffafa; --card2: #faefef;
+  --text: #4d3636; --muted: #a88f8f; --border: #ecd9d9;
+  --accent: #a8545f; --accent2: #bf7078; --accent-soft: #f6dcdf; --on-accent: #fff8f8;
+}
+body[data-theme="ocean"] {
+  --bg: #e9eff4; --bg2: #dfe8f0; --card: #f9fcff; --card2: #eef4fa;
+  --text: #33434f; --muted: #8698a6; --border: #d6e2ec;
+  --accent: #3f6f96; --accent2: #5988ad; --accent-soft: #dbe8f3; --on-accent: #f6fbff;
+}
+body[data-theme="violet"] {
+  --bg: #f0ebf5; --bg2: #e8e1f0; --card: #fcfaff; --card2: #f3eefa;
+  --text: #41364f; --muted: #978aa8; --border: #e3d9ee;
+  --accent: #6f4f9e; --accent2: #8869b5; --accent-soft: #e7dcf4; --on-accent: #faf7ff;
+}
+body[data-theme="sand"] {
+  --bg: #f5efe3; --bg2: #efe6d5; --card: #fffdf7; --card2: #faf4e6;
+  --text: #4f4231; --muted: #a5967c; --border: #ece0c9;
+  --accent: #9a7b3f; --accent2: #b39453; --accent-soft: #f1e6cb; --on-accent: #fffdf5;
+}
+body[data-theme="night"] {
+  --bg: #1e1b19; --bg2: #262220; --card: #2b2623; --card2: #332d29;
+  --text: #ece3d8; --muted: #9c9086; --border: #3d3631;
+  --accent: #c79a6b; --accent2: #d9b189; --accent-soft: #3a3129; --on-accent: #221d19;
+  --shadow: 0 8px 24px rgba(0, 0, 0, .35); --shadow-sm: 0 3px 10px rgba(0, 0, 0, .3);
+}
+body[data-theme="mint"] {
+  --bg: #e8f3f0; --bg2: #ddebe7; --card: #f9fefc; --card2: #eef8f5;
+  --text: #30443f; --muted: #839b95; --border: #d3e6e0;
+  --accent: #3f8a78; --accent2: #58a08e; --accent-soft: #d8efe8; --on-accent: #f5fffc;
+}
+body[data-theme="coral"] {
+  --bg: #fbeee8; --bg2: #f6e3da; --card: #fff9f6; --card2: #fbeae2;
+  --text: #4a2f28; --muted: #a78a80; --border: #f0d8cd;
+  --accent: #d9663f; --accent2: #e58463; --accent-soft: #f8dccf; --on-accent: #fff8f5;
+}
+body[data-theme="forest"] {
+  --bg: #e9f0ea; --bg2: #dfe9e0; --card: #f9fdfa; --card2: #eef5ef;
+  --text: #2c3b31; --muted: #87998c; --border: #d6e2d8;
+  --accent: #3f6b4f; --accent2: #588369; --accent-soft: #d7e5da; --on-accent: #f6fbf7;
+}
+body[data-theme="bubblegum"] {
+  --bg: #fbeaf3; --bg2: #f6dfec; --card: #fffbFe; --card2: #fbe9f3;
+  --text: #46293a; --muted: #a8879b; --border: #f1d5e5;
+  --accent: #c65b9c; --accent2: #d67bb2; --accent-soft: #f6d7e9; --on-accent: #fff7fb;
+}
+body[data-theme="lemon"] {
+  --bg: #f8f2dd; --bg2: #f2ead1; --card: #fffdf4; --card2: #f8f1dd;
+  --text: #453a20; --muted: #a2956f; --border: #ece0bf;
+  --accent: #b8912f; --accent2: #cca94f; --accent-soft: #efe3b9; --on-accent: #fffdf3;
+}
+body[data-theme="steel"] {
+  --bg: #eaedf1; --bg2: #e0e5ea; --card: #fafbfd; --card2: #eff2f6;
+  --text: #2e343d; --muted: #87909b; --border: #d8dee5;
+  --accent: #556070; --accent2: #6d7a8c; --accent-soft: #dbe1e8; --on-accent: #f7f9fb;
+}
+body[data-theme="sepia"] {
+  --bg: #f0e7d8; --bg2: #e9dfcb; --card: #fdf8ef; --card2: #f4ecdd;
+  --text: #40342a; --muted: #9c8d78; --border: #e4d7c1;
+  --accent: #7a5b3a; --accent2: #94734e; --accent-soft: #e6d6bd; --on-accent: #fdf8f0;
+}
+
+/* ===== استایل‌های چیدمان ===== */
+body[data-style="minimal"] { --shadow: none; --shadow-sm: none; --radius: 12px; --radius-sm: 9px; }
+body[data-style="minimal"] .panel,
+body[data-style="minimal"] .hero,
+body[data-style="minimal"] .stat-card { background: var(--card); }
+body[data-style="minimal"] .panel-head h2 { font-weight: 700; }
+
+body[data-style="glass"] .panel,
+body[data-style="glass"] .hero,
+body[data-style="glass"] .stat-card,
+body[data-style="glass"] .nav,
+body[data-style="glass"] .modal {
+  background: color-mix(in srgb, var(--card) 68%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+body[data-style="compact"] { font-size: 13px; line-height: 1.7; }
+body[data-style="compact"] .panel { padding: 12px; }
+body[data-style="compact"] .panel-head { margin-bottom: 10px; }
+body[data-style="compact"] .stat-card { padding: 11px; }
+body[data-style="compact"] .grid { gap: 8px; }
+body[data-style="compact"] .app { padding: 12px 12px 70px; }
+
+body[data-style="outline"] .panel,
+body[data-style="outline"] .stat-card,
+body[data-style="outline"] .hero { box-shadow: none; border-width: 2px; border-color: var(--accent-soft); }
+
+.style-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+.style-card {
+  display: flex; align-items: center; gap: 6px;
+  padding: 9px 16px; border-radius: 999px; cursor: pointer;
+  background: var(--card2); border: 1px solid var(--border); font-weight: 700; color: var(--muted);
+}
+.style-card.active { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+.style-card.active svg { width: 14px; height: 14px; }
+
+
+html, body { height: 100%; }
+
+body {
+  font-family: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+  text-align: right;
+  line-height: 1.9;
+  font-size: 14px;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  transition: background-color .3s, color .3s;
