@@ -148,3 +148,338 @@ body {
   background-size: cover;
   background-position: center;
   transition: background-color .3s, color .3s;
+}
+
+button, input, select, textarea { font-family: inherit; font-size: 14px; color: inherit; }
+button { cursor: pointer; border: none; background: none; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+.app { max-width: 1180px; margin: 0 auto; padding: 18px 18px 80px; }
+
+/* ===== هدر ===== */
+.hero {
+  background: linear-gradient(160deg, var(--card), var(--card2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 22px 22px;
+  text-align: center;
+}
+.hero .brand { letter-spacing: 4px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.hero h1 { font-size: 30px; margin: 4px 0 2px; font-weight: 800; }
+.hero .tag { color: var(--muted); font-size: 13px; }
+.search-wrap { position: relative; max-width: 460px; margin: 18px auto 2px; }
+.search {
+  width: 100%; padding: 12px 42px 12px 16px;
+  border-radius: 999px; border: 1px solid var(--border);
+  background: var(--card2); outline: none; text-align: right;
+}
+.search:focus { border-color: var(--accent2); }
+.search-ico { position: absolute; top: 50%; right: 14px; transform: translateY(-50%); color: var(--muted); }
+.search-results {
+  position: absolute; top: 50px; right: 0; left: 0; z-index: 60;
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow); max-height: 320px; overflow: auto; padding: 6px;
+}
+.sr-item { padding: 8px 10px; border-radius: 8px; display: flex; gap: 8px; align-items: center; }
+.sr-item:hover { background: var(--accent-soft); }
+.sr-item small { color: var(--muted); margin-right: auto; }
+
+/* ===== ناوبری ===== */
+.nav {
+  display: flex; gap: 6px; overflow-x: auto; padding: 8px;
+  margin: 16px 0; background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  scrollbar-width: thin;
+}
+.nav::-webkit-scrollbar { height: 5px; }
+.nav::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9px; }
+.nav-item {
+  display: inline-flex; align-items: center; gap: 7px; white-space: nowrap;
+  padding: 9px 14px; border-radius: 999px; color: var(--muted); font-weight: 600;
+  transition: .18s;
+}
+.nav-item:hover { background: var(--accent-soft); color: var(--text); }
+.nav-item.active { background: var(--accent); color: var(--on-accent); }
+.nav-item svg { width: 17px; height: 17px; }
+
+/* ===== کارت‌ها و layout ===== */
+.panel {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  padding: 18px; margin-bottom: 16px;
+}
+.panel-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.panel-head h2 { font-size: 17px; font-weight: 800; }
+.panel-head .sub { color: var(--muted); font-size: 12px; }
+.panel-head .spacer { margin-right: auto; }
+.grid { display: grid; gap: 14px; }
+.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cols-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) {
+  .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 620px) {
+  .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; }
+  .app { padding: 10px 10px 70px; }
+  .hero h1 { font-size: 24px; }
+}
+
+/* ===== دکمه‌ها ===== */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 16px; border-radius: 999px; font-weight: 700;
+  background: var(--accent); color: var(--on-accent); transition: .18s;
+  border: 1px solid transparent;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn svg { width: 16px; height: 16px; }
+.btn.ghost { background: var(--card2); color: var(--text); border-color: var(--border); }
+.btn.ghost:hover { background: var(--accent-soft); }
+.btn.soft { background: var(--accent-soft); color: var(--accent); }
+.btn.danger { background: var(--bad); }
+
+.icon-btn {
+  width: 34px; height: 34px; display: inline-grid; place-items: center;
+  border-radius: 10px; color: var(--muted); border: 1px solid var(--border);
+  background: var(--card2); transition: .18s;
+}
+.icon-btn:hover { color: var(--text); background: var(--accent-soft); }
+.icon-btn svg { width: 16px; height: 16px; }
+
+/* ===== فرم ===== */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 12px; color: var(--muted); font-weight: 700; }
+.input, select.input, textarea.input {
+  padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--card2); outline: none; width: 100%;
+}
+.input:focus { border-color: var(--accent2); }
+textarea.input { resize: vertical; min-height: 70px; line-height: 1.9; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-grid .full { grid-column: 1 / -1; }
+@media (max-width: 620px) { .form-grid { grid-template-columns: 1fr; } }
+
+/* ===== چیپ‌ها ===== */
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700;
+  background: var(--accent-soft); color: var(--accent);
+}
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.muted { color: var(--muted); }
+.tiny { font-size: 11px; }
+
+/* ===== تسک ===== */
+.task {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 9px 11px; border-radius: 12px; background: var(--card2);
+  border: 1px solid var(--border); border-right: 4px solid var(--accent);
+  margin-bottom: 8px;
+}
+.task.done { opacity: .55; }
+.task.done .t-title { text-decoration: line-through; }
+.task .t-body { flex: 1; min-width: 0; }
+.task .t-title { font-weight: 700; font-size: 13px; word-break: break-word; }
+.task .t-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 11px; margin-top: 3px; }
+.checkbox {
+  width: 20px; height: 20px; min-width: 20px; border-radius: 6px;
+  border: 1.5px solid var(--border); display: grid; place-items: center;
+  background: var(--card); color: transparent; margin-top: 1px;
+}
+.checkbox.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.checkbox svg { width: 13px; height: 13px; }
+
+/* ===== تقویم هفته ===== */
+.week-grid { display: grid; grid-template-columns: repeat(7, minmax(150px, 1fr)); gap: 10px; }
+@media (max-width: 900px) { .week-grid { grid-template-columns: repeat(7, minmax(150px, 1fr)); overflow-x: auto; } }
+.day-col {
+  background: var(--card2); border: 1px solid var(--border); border-radius: 14px;
+  padding: 10px; min-height: 150px;
+}
+.day-col.today-col { border-color: var(--accent2); box-shadow: 0 0 0 2px var(--accent-soft); }
+.day-col .dc-head { text-align: center; padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+.day-col .dc-name { font-weight: 700; font-size: 12px; }
+.day-col .dc-date { font-size: 11px; color: var(--muted); }
+.day-col .dc-date.today { color: var(--accent); font-weight: 800; }
+
+/* ===== کارهای نمای هفته ===== */
+.wtask {
+  display: flex; gap: 8px; align-items: flex-start;
+  padding: 9px 10px; margin-bottom: 8px;
+  background: var(--card2); border: 1px solid var(--border); border-radius: 12px;
+  line-height: 1.85; transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.wtask:hover { border-color: var(--accent2); box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+.wtask.done { opacity: .55; }
+.wtask.done .wtask-title { text-decoration: line-through; }
+.wtask .checkbox { margin-top: 2px; flex: 0 0 auto; }
+.wtask-body { flex: 1; min-width: 0; }
+.wtask-title { font-size: 13px; font-weight: 700; line-height: 1.9; word-break: break-word; overflow-wrap: anywhere; }
+.wtask-meta { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.6; }
+.wtask-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
+.wtask-actions { display: flex; gap: 2px; opacity: 0; transition: opacity .15s; flex: 0 0 auto; }
+.wtask:hover .wtask-actions, .wtask:focus-within .wtask-actions { opacity: 1; }
+@media (hover: none) { .wtask-actions { opacity: 1; } }
+
+
+/* ===== تقویم ماه ===== */
+.month-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.month-cell {
+  background: var(--card2); border: 1px solid var(--border); border-radius: 12px;
+  min-height: 100px; padding: 8px; position: relative; cursor: pointer;
+}
+.month-cell.empty { background: transparent; border-color: transparent; cursor: default; }
+.month-cell.today { border-color: var(--accent2); box-shadow: 0 0 0 2px var(--accent-soft); }
+.month-cell .mc-num { font-weight: 800; font-size: 13px; }
+.month-cell .mc-num.today { color: var(--accent); }
+.month-cell .mc-ev {
+  font-size: 10.5px; background: var(--accent-soft); color: var(--accent);
+  border-radius: 7px; padding: 2px 6px; margin-top: 4px; display: block;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.mc-head { text-align: center; font-size: 11px; font-weight: 700; color: var(--muted); padding: 4px; }
+
+/* ===== آمار / هیت‌مپ ===== */
+.stat-card { background: var(--card2); border: 1px solid var(--border); border-radius: 16px; padding: 16px; text-align: center; }
+.stat-card .v { font-size: 24px; font-weight: 800; }
+.stat-card .l { color: var(--muted); font-size: 12px; }
+.heat { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr); gap: 4px; direction: ltr; }
+.heat-cell { width: 15px; height: 15px; border-radius: 4px; background: var(--border); }
+.wk-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.wk-cell { aspect-ratio: 1; border-radius: 8px; display: grid; place-items: center; font-size: 11px; background: var(--card2); border: 1px solid var(--border); }
+
+.progressbar { height: 8px; border-radius: 999px; background: var(--border); overflow: hidden; }
+.progressbar > span { display: block; height: 100%; background: var(--accent); border-radius: 999px; transition: width .3s; }
+
+.bars { display: flex; align-items: flex-end; gap: 10px; height: 160px; padding-top: 10px; }
+.bars .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+.bars .bar { width: 70%; background: linear-gradient(var(--accent2), var(--accent)); border-radius: 8px 8px 0 0; min-height: 3px; }
+.donut { width: 150px; height: 150px; border-radius: 50%; display: grid; place-items: center; position: relative; }
+.donut::after { content: ""; position: absolute; inset: 26px; border-radius: 50%; background: var(--card); }
+.donut .dl { position: relative; z-index: 2; text-align: center; }
+
+/* ===== لیست‌ها ===== */
+.list-row {
+  display: flex; align-items: center; gap: 10px; padding: 11px 13px;
+  border: 1px solid var(--border); border-radius: 12px; background: var(--card2);
+  margin-bottom: 8px;
+}
+.list-row .grow { flex: 1; min-width: 0; }
+.swatch { width: 22px; height: 22px; border-radius: 7px; border: 2px solid var(--card); box-shadow: 0 0 0 1px var(--border); }
+
+.avatar {
+  width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 15px;
+}
+
+/* ===== تب ===== */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.tab { padding: 7px 14px; border-radius: 999px; background: var(--card2); border: 1px solid var(--border); font-weight: 700; color: var(--muted); }
+.tab.active { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+
+/* ===== مودال ===== */
+.overlay {
+  position: fixed; inset: 0; background: rgba(40, 28, 20, .45);
+  display: none; align-items: center; justify-content: center; z-index: 100; padding: 16px;
+  backdrop-filter: blur(2px);
+}
+.overlay.open { display: flex; }
+.modal {
+  background: var(--card); border-radius: var(--radius); border: 1px solid var(--border);
+  box-shadow: var(--shadow); width: 100%; max-width: 560px; max-height: 90vh; overflow: auto;
+  padding: 20px;
+}
+.modal-head { display: flex; align-items: center; margin-bottom: 14px; }
+.modal-head h3 { font-size: 16px; font-weight: 800; }
+.modal-head .spacer { margin-right: auto; }
+.modal-foot { display: flex; gap: 8px; justify-content: flex-start; margin-top: 16px; }
+
+/* ===== تم‌ها ===== */
+.theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.theme-card {
+  border: 2px solid var(--border); border-radius: 14px; overflow: hidden; cursor: pointer;
+  background: var(--card2); transition: .18s;
+}
+.theme-card:hover { transform: translateY(-3px); }
+.theme-card.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.theme-card .sw { height: 56px; display: flex; }
+.theme-card .sw i { flex: 1; }
+.theme-card .nm { padding: 8px 10px; font-weight: 700; font-size: 12px; display: flex; justify-content: space-between; }
+
+/* ===== نوار پیشرفت بالا ===== */
+.topbar { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.topbar .ttl { font-weight: 800; }
+.topbar .spacer { margin-right: auto; }
+
+.badge { padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+.badge.low { background: #e6efe6; color: #4d7a4d; }
+.badge.medium { background: #f6ecd8; color: #9a742c; }
+.badge.high { background: #f6ded8; color: #a34a34; }
+body[data-theme="night"] .badge.low { background: #2e3a2e; }
+body[data-theme="night"] .badge.medium { background: #3d3524; }
+body[data-theme="night"] .badge.high { background: #3e2a24; }
+
+.empty { text-align: center; color: var(--muted); padding: 26px 10px; font-size: 13px; }
+
+/* ===== جدول ===== */
+.tbl { width: 100%; border-collapse: separate; border-spacing: 6px; }
+.tbl th { font-size: 12px; color: var(--muted); font-weight: 700; padding: 6px; }
+.tbl td { padding: 0; }
+.tbl .input { padding: 8px; }
+
+/* ===== حالت تاریک ===== */
+body[data-mode="dark"] {
+  --bg: #1b1917; --bg2: #232019; --card: #2a2622; --card2: #332e29;
+  --text: #ece3d8; --muted: #9c9086; --border: #3d3631;
+  --shadow: 0 8px 24px rgba(0, 0, 0, .42); --shadow-sm: 0 3px 10px rgba(0, 0, 0, .34);
+}
+body[data-mode="dark"] .overlay { background: rgba(0, 0, 0, .62); }
+body[data-mode="dark"] .month-cell { background: var(--card2); }
+
+/* ===== مود ترکر ===== */
+.mood-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.mood-btn {
+  width: 52px; height: 52px; border-radius: 14px; border: 1px solid var(--border);
+  background: var(--card2); font-size: 24px; line-height: 1; display: grid; place-items: center; transition: .15s;
+}
+.mood-btn:hover { transform: translateY(-2px); border-color: var(--accent2); }
+.mood-btn.active { background: var(--accent-soft); border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); transform: translateY(-2px); }
+.mood-mini { font-size: 15px; }
+.dc-mood { font-size: 15px; line-height: 1; margin-top: 2px; }
+.mood-strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; }
+.mood-strip-item { text-align: center; min-width: 38px; }
+.mood-strip-emoji { font-size: 20px; line-height: 1.5; }
+
+/* ===== گرید ۳۰ روزه عادت ===== */
+.habit-card { border: 1px solid var(--border); border-radius: 14px; padding: 10px; margin-bottom: 10px; background: var(--card); }
+.habit-card .task { border: none; background: transparent; padding: 2px 2px 8px; margin: 0; }
+.h30-wrap { margin-top: 4px; }
+.h30-label { display: block; font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+.h30-grid { display: grid; grid-template-columns: repeat(15, 1fr); gap: 5px; }
+@media (max-width: 620px) { .h30-grid { grid-template-columns: repeat(10, 1fr); } }
+.h30 {
+  aspect-ratio: 1; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--card2); display: grid; place-items: center; font-size: 11px; color: var(--muted); transition: .12s;
+}
+.h30:hover { border-color: var(--accent2); }
+.h30.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 800; }
+.h30.today { box-shadow: 0 0 0 2px var(--accent-soft); }
+
+/* ===== دکمه‌های هدر و حالت انگلیسی ===== */
+.hero { position: relative; }
+.hero-actions { position: absolute; top: 14px; right: 16px; display: flex; gap: 8px; z-index: 3; }
+.hero-btn {
+  width: 40px; height: 40px; border-radius: 12px; background: var(--card2);
+  border: 1px solid var(--border); display: grid; place-items: center; font-weight: 800; font-size: 13px; transition: .15s;
+}
+.hero-btn svg { width: 18px; height: 18px; }
+.hero-btn:hover { border-color: var(--accent2); color: var(--accent); }
+body.lang-en { direction: ltr; text-align: left; }
+body.lang-en .hero-actions { right: auto; left: 16px; }
+body.lang-en .search { text-align: left; padding: 12px 16px 12px 42px; }
+body.lang-en .search-ico { right: auto; left: 14px; }
+body.lang-en .search-results { text-align: left; }
+body.lang-en .panel-head .spacer, body.lang-en .modal-head .spacer { margin-right: 0; margin-left: auto; }
