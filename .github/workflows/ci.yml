@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate English app (fails if translations are missing)
+        run: node scripts/translate.js
+
+      - name: Build single-file planner
+        run: node scripts/build.js
+
+      - name: Check JS syntax
+        run: |
+          for f in js/jalali.js js/gregorian.js js/app.js js/app.en.js scripts/translate.js scripts/build.js server.js; do
+            node --check "$f"
+          done
