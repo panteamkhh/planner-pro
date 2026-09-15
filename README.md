@@ -259,6 +259,4 @@ Licensed under the **[MIT License](LICENSE)** © 2026 Yasiplann — free to use,
 
 **Made with ❤️ for better planning — By Yasiplann**
 
-<sub>Persian support: تقویم شمسی و رابط راست‌به‌چپ به‌صورت کامل پشتیبانی می‌شود.</sub>
-
 </div>
