@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use or build upon this project, please cite it as below."
+title: "Professional Planner — offline bilingual personal planner"
+abstract: "A fully offline, zero-dependency personal planner with Jalali (Persian) and Gregorian calendars, goals, habits, mood tracking, finance and journaling."
+authors:
+  - given-names: "Pantea"
+    family-names: "Mohamadkhani"
+    alias: "Yasiplann"
+version: 1.0.0
+date-released: "2026-09-15"
+license: MIT
+repository-code: "https://github.com/panteamkhh/planner-pro"
+keywords:
+  - planner
+  - persian
+  - jalali
+  - calendar
+  - offline
+  - productivity
