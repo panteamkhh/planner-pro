@@ -1,1 +1,42 @@
-﻿{"name":"planner-pro","version":"1.0.0","private":true,"license":"MIT"}
+{
+  "name": "planner-pro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fully offline, bilingual (Persian/English) personal planner with Jalali & Gregorian calendars. Zero dependencies.",
+  "keywords": [
+    "planner",
+    "persian",
+    "farsi",
+    "jalali",
+    "shamsi",
+    "gregorian",
+    "calendar",
+    "offline",
+    "rtl",
+    "ltr",
+    "productivity",
+    "habits",
+    "mood-tracker",
+    "journal",
+    "localstorage",
+    "vanilla-js"
+  ],
+  "license": "MIT",
+  "author": "Yasiplann",
+  "homepage": "https://panteamkhh.github.io/planner-pro/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panteamkhh/planner-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/panteamkhh/planner-pro/issues"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "node scripts/translate.js && node scripts/build.js",
+    "translate": "node scripts/translate.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
